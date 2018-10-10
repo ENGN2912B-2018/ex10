@@ -5,7 +5,7 @@ Integration can be numerically approximated by using a variety of methods.  One 
 
 <img src="https://latex.codecogs.com/gif.latex?\int_{a}^{b}&space;f(x)&space;dx&space;\approx&space;\sum_{k=1}^{N}&space;\frac{f(x_{k-1})&plus;f(x_k)}{2}&space;\Delta&space;x_k" title="\int_{a}^{b} f(x) dx \approx \sum_{k=1}^{N} \frac{f(x_{k-1})+f(x_k)}{2} \Delta x_k" />
 
-The Trapezoidal Rule is implemented in a function within `main1.cpp`.  Although we could replicate this function for each and every combination of data types, it is a much better solution to use C++ Templates.  In this manner, we need only to check that the input types and values are valid, rather than maintain numerous copies of the function implementation.
+The Trapezoidal Rule is implemented in a function within `main1.cpp`.  Generate the executable by following the standard CMake out-of-source build process.
 
 ### Generate executables using CMake
 ```
@@ -15,17 +15,36 @@ cmake ..
 make
 ``` 
 
-Note that the preprocessor directive #define is used to define a preprocessor variable named `DEBUG`.  By commenting this line out, the programmer can explicitly suppress the debugging output because the compiler ignores any text between `#ifdef DEBUG` and `#endif`.  Excessive use of these directives can clutter the source code, so usage should be minimized for readability.  Nevertheless, these directives can be useful for quickly validating the program behavior when a debugger is overkill.
+The `make` command will automatically build all target executables and libraries specified by the CMakeLists.txt file.  To build only the target executable you want, you can alternatively clean the build environment of all previously built executables and specify only the build target you want.
 
-In `main1.cpp`, enter the test function name (i.e., y1, y2) as the first parameter to `trapz()` and validate the resulting output.  You can also use the optional command line parameters to validate the implementation with different integration step sizes.
+```
+make clean
+make ex10p1
+```
+
+`make help` lists all of the available targets that were written into the `Makefile` by CMake.
+
+### Preprocessor Directives
+
+You have already seen and used the most common preprocessor directive, `#include` in almost every C++ program you've written!  The `#include` directive tells the preprocessor to look for the specified source header file to include in the program.  Using angle brackets `<filename>` tells the preprocessor that this library can be found in the built-in C++ libraries, such as `<iostream>` or the legacy C-library functions `<cmath>` and `<cstdlib>`.  The `c` prepended to the library name clearly identifies this as a C-standard library.
+
+It is worth noting that we could also specify the header file by it's name directly as `#include <math.h>` and yield similar results.  `<cmath>` is a C++ wrapper to the C library `math.h`.  `<cmath>` defines the math functions in the `std` namespace, whereas `<math.h>` has no such guarantees.
+
+Alternatively, double quotations can be used to specify the header file (e.g., `#include "myLib.hxx"`).  This tells the compiler to search the current directory first, followed by any directories specified with `-I` during the compilation process.  If GCC cannot locate these files locally, it will search the standard `/usr/include` and `/usr/local/include` directories.
+
+Another preprocessor directive, `#define`, is used in `main1.cpp` to define a preprocessor variable named `DEBUG`.  By commenting this line out, the programmer can explicitly suppress the debugging output because the compiler ignores any text between `#ifdef DEBUG` and `#endif`.  Excessive use of these directives can clutter the source code, so usage should be minimized for readability.  Nevertheless, these directives can be useful for quickly validating the program behavior when a debugger is overkill.
+
+In `main1.cpp`, we are using function pointers to pass the test function (i.e., y1, y2) as the first parameter to `trapz()`.  Try swapping the function used in `main()` and validate the resulting output.  You can also use the optional command line parameters to validate the implementation with different integration step sizes.
 
 ```
 ./ex10p1
 ./ex10p1 -10 10 1000
 ```
 
-## Using Function Templates
+### Using Function Templates
 
-The main1.cpp function is strictly implemented using floats.  Suppose we wanted to use double data types instead.  How would we implement this?  This can be done using function overloading, but then two sets (or more!) of implementations must be maintained.  This is where Function Templates come into play.
+The main1.cpp function is strictly implemented using floats.  Suppose we wanted to use double data types instead.  How would we implement this?
+
+Although we could replicate the function for each and every combination of data types (using function overloading), it is a much better solution to use C++ Templates.  By using Function Templates, we only need to maintain one function implementation and check that the input data types and values are valid.
 
 
