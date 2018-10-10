@@ -7,12 +7,12 @@
 using namespace std;
 
 // define a set of test functions
-float y1(float x){
+double y1(double x){
 	// y(x) = 1/(1+x^2)
 	return 1.0/(1.0+x*x);
 }
 
-float y2(float x){
+double y2(double x){
 	// y(x) = |x|
 	return fabs(x);
 }
@@ -25,8 +25,13 @@ int main(int argc, char* argv[]) {
 	int N = 10;
 
 	// initialize integral range and number of uniform grid points
+#if 0
 	float a = 0;
 	float b = 1;
+#else
+	double a = 0;
+	double b = 1;
+#endif
 
 	// override default arguments
 	switch (argc){
@@ -43,10 +48,11 @@ int main(int argc, char* argv[]) {
 	}
 
 	// compute the integral and send to std output
-	float y_int_a_b = trapz(y1,a,b,N);
-	//float y_int_a_b = trapz(y2,a,b,N);
+	double y_int_a_b1 = trapz(y1,a,b,N);
+	double y_int_a_b2 = trapz(y2,a,b,N);
 
-	cout << "Value of definite integral is " << y_int_a_b << endl;
+	cout << "Value of definite integral (y1) is " << y_int_a_b1 << endl;
+	cout << "Value of definite integral (y2) is " << y_int_a_b2 << endl;
 
 	return 0;
 }
