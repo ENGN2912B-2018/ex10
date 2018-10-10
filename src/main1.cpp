@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cassert>
-#include <cmath>
+#include <math.h>
 
 #define DEBUG
 
