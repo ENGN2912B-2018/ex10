@@ -43,8 +43,8 @@ In `main1.cpp`, we are using function pointers to pass the test function (i.e., 
 
 ### Using Function Templates
 
-The main1.cpp function is strictly implemented using floats.  Suppose we wanted to use double data types instead.  How would we implement this?
+The `src/main1.cpp` function is strictly implemented using floats.  Suppose we wanted to use double data types instead.  How would we implement this?
 
-Although we could replicate the function for each and every combination of data types (using function overloading), it is a much better solution to use C++ Templates.  By using Function Templates, we only need to maintain one function implementation and check that the input data types and values are valid.
+Although we can replicate the same function for each and every combination of data types (using function overloading), it is a much better solution to use C++ Templates.  By using Function Templates, we only need to maintain one function implementation and check that the input data types and values are valid.
 
-
+`src/main2.cpp` and `lib/integrate.hpp` moves the `trapz()` function to a static library and converts the signature with floats to a function template. To verify that a floating point type is used, we run an assertion check using the `<type_traits>` library for types T1 and T2.
