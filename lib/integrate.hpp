@@ -23,10 +23,10 @@ double trapz(T1 (*fn)(T1), const T2 a, const T2 b, const int N) {
 	assert (N > 1);
 
 	// grid spacing
-	T1 h = (b-a)/N;
+	double h = (b-a)/N;
 
 	// compute value and sum first and last values in series
-	T1 sum = fn(a) + fn(b);
+	double sum = fn(a) + fn(b);
 
 	// add to cumulative sum using trapezoidal rule
 	for (int i=1; i < N; i++) {
