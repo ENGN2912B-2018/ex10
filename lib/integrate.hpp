@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 /*
  * trapz() - This function computes an approximate definite integral using the
  * Trapezoidal Rule with uniform grid spacing.
@@ -19,6 +21,9 @@ template <typename T1, typename T2>
 double trapz(T1 (*fn)(T1), const T2 a, const T2 b, const int N) {
 
 	// validate input
+	assert (std::is_floating_point<T1>::value);
+	assert (std::is_floating_point<T2>::value);
+	assert (b > a);
 	assert (b > a);
 	assert (N > 1);
 
