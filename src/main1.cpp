@@ -7,10 +7,24 @@
 using namespace std;
 
 // test function declaration
-float y(float x);
+float y1(float x);
+float y2(float x);
 
-// Compute an approximate integral using the Trapezoidal Rule with uniform sample spacing
-// Adopted from: https://www.geeksforgeeks.org/trapezoidal-rule-for-approximate-value-of-definite-integral/
+/*
+ * trapz() - This function computes an approximate definite integral using the
+ * Trapezoidal Rule with uniform grid spacing.
+ *
+ * Inputs:
+ * 	- float (*fn)(float):	pointer to some function y(x)
+ * 	- const float a:		integral lower bound
+ * 	- const float b:		integral upper bound
+ * 	- const int N:			number of computational grids between a and b
+ *
+ * Output:
+ *  - float:				approximate integral result
+ *
+ * Adopted from: https://www.geeksforgeeks.org/trapezoidal-rule-for-approximate-value-of-definite-integral
+ */
 float trapz(float (*fn)(float), const float a, const float b, const int N) {
 
 	// validate input
@@ -80,9 +94,10 @@ int main(int argc, char* argv[]) {
 
 	// compute the integral and send to std output
 	float y_int_a_b = trapz(y1,a,b,N);
-	//float y_int_a_b = trapz(y2,a,b,N);
+	float y_int_a_b = trapz(y2,a,b,N);
 
-	cout << "Value of definite integral is " << y_int_a_b << endl;
+	cout << "Value of definite integral (y1) is " << y_int_a_b1 << endl;
+	cout << "Value of definite integral (y2) is " << y_int_a_b2 << endl;
 
 	return 0;
 }
