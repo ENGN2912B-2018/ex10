@@ -7,15 +7,29 @@
 using namespace std;
 
 // define a set of test functions
-double y1(double x){
-	// y(x) = 1/(1+x^2)
-	return 1.0/(1.0+x*x);
-}
 
-double y2(double x){
-	// y(x) = |x|
-	return fabs(x);
-}
+#if 1
+	// y1(x) = 1/(1+x^2)
+	double y1(double x){
+		return 1.0/(1.0+x*x);
+	}
+
+	// y2(x) = |x|
+	double y2(double x){
+		return fabs(x);
+	}
+#else
+	// y1(x) = 1/(1+x^2)
+	float y1(float x){
+		return 1.0/(1.0+x*x);
+	}
+
+	// y2(x) = |x|
+	float y2(float x){
+		return fabs(x);
+	}
+#endif
+
 
 //
 // main function
@@ -26,11 +40,11 @@ int main(int argc, char* argv[]) {
 
 	// initialize integral range and number of uniform grid points
 #if 0
-	float a = 0;
-	float b = 1;
+	double a = 0.0;
+	double b = 1.0;
 #else
-	double a = 0;
-	double b = 1;
+	float a = 0.0;
+	float b = 1.0;
 #endif
 
 	// override default arguments

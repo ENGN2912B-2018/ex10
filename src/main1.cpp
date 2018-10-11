@@ -15,7 +15,7 @@ float y2(float x);
  * Trapezoidal Rule with uniform grid spacing.
  *
  * Inputs:
- * 	- float (*fn)(float):	pointer to some function y(x)
+ * 	- float (*fn)(float):	pointer to some function f(x)
  * 	- const float a:		integral lower bound
  * 	- const float b:		integral upper bound
  * 	- const int N:			number of computational grids between a and b
@@ -93,10 +93,10 @@ int main(int argc, char* argv[]) {
 	}
 
 	// compute the integral and send to std output
-	float y_int_a_b = trapz(y1,a,b,N);
-	float y_int_a_b = trapz(y2,a,b,N);
+	float y_int_a_b1 = trapz(y1,a,b,N);
+	cout << "Value of definite integral (y1) is " << y_int_a_b1 << endl << endl;
 
-	cout << "Value of definite integral (y1) is " << y_int_a_b1 << endl;
+	float y_int_a_b2 = trapz(y2,a,b,N);
 	cout << "Value of definite integral (y2) is " << y_int_a_b2 << endl;
 
 	return 0;
