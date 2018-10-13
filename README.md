@@ -1,11 +1,11 @@
-# Classroom examples from Lectures 10 - Preprocessor Directives and Templates
+# Classroom examples from Lecture 10 - Preprocessor Directives and Templates
 
 ## Numerical integration using the Trapezoidal Rule
 Integration can be numerically approximated by using a variety of methods.  One such method, used here, is the Trapezoidal Rule:
 
 <img src="https://latex.codecogs.com/gif.latex?\int_{a}^{b}&space;f(x)&space;dx&space;\approx&space;\sum_{k=1}^{N}&space;\frac{f(x_{k-1})&plus;f(x_k)}{2}&space;\Delta&space;x_k" title="\int_{a}^{b} f(x) dx \approx \sum_{k=1}^{N} \frac{f(x_{k-1})+f(x_k)}{2} \Delta x_k" />
 
-The Trapezoidal Rule is implemented in a function within `main1.cpp`.  Generate the executable by following the standard CMake out-of-source build process.
+The Trapezoidal Rule is implemented in a function within [`main1.cpp`](./src/main1.cpp).  Generate the executable by following the standard CMake out-of-source build process.
 
 ### Generate executables using CMake
 ```
@@ -13,7 +13,7 @@ mkdir build
 cd build
 cmake ..
 make
-``` 
+```
 
 The `make` command will automatically build all target executables and libraries specified by the CMakeLists.txt file.  To build only the target executable you want, you can alternatively clean the build environment of all previously built executables and specify only the build target you want.
 
@@ -23,6 +23,28 @@ make ex10p1
 ```
 
 `make help` lists all of the available targets that were written into the `Makefile` by CMake.
+
+```
+gaudetteje@macbookpro:~/Documents/src/cpp/ENGN2912B/examples/ex10/build$ make help
+The following are some of the valid targets for this Makefile:
+... all (the default if no target is provided)
+... clean
+... depend
+... rebuild_cache
+... edit_cache
+... ex10p2
+... ex10p1
+... integrate
+... lib/integrate.o
+... lib/integrate.i
+... lib/integrate.s
+... src/main1.o
+... src/main1.i
+... src/main1.s
+... src/main2.o
+... src/main2.i
+... src/main2.s
+```
 
 ### Preprocessor Directives
 
