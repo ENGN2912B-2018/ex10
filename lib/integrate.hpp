@@ -24,7 +24,6 @@ double trapz(T1 (*fn)(T1), const T2 a, const T2 b, const int N) {
 	assert (std::is_floating_point<T1>::value);
 	assert (std::is_floating_point<T2>::value);
 	assert (b > a);
-	assert (b > a);
 	assert (N > 1);
 
 	// grid spacing
